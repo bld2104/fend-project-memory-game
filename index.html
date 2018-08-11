@@ -3,23 +3,30 @@
 <head>
     <meta charset="utf-8">
     <title>Matching Game</title>
+
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
 
-    <div class="container">
+    <div class="container2">
+        
         <header>
-            <h1>Matching Game</h1>
+            <h1 style="color:#9922BC; font-weight:bold; font-size:48pt; ">Matching Game</h1>
+            <h1 id="timerplace1"></h1>
+
+            <h1 id="nummoves2"></h1>
+            <div style="height:20px"></div>
         </header>
 
         <section class="score-panel">
         	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
+        		<li class="one"><i class="fa fa-star"></i></li>
+        		<li class="two"><i class="fa fa-star"></i></li>
+        		<li class="three "><i class="fa fa-star"></i></li>
         	</ul>
 
         	<span class="moves">3</span> Moves
@@ -36,7 +43,7 @@
             <li class="card">
                 <i class="fa fa-paper-plane-o"></i>
             </li>
-            <li class="card match">
+            <li class="card ">
                 <i class="fa fa-anchor"></i>
             </li>
             <li class="card">
@@ -45,7 +52,7 @@
             <li class="card">
                 <i class="fa fa-cube"></i>
             </li>
-            <li class="card match">
+            <li class="card ">
                 <i class="fa fa-anchor"></i>
             </li>
             <li class="card">
@@ -66,7 +73,7 @@
             <li class="card">
                 <i class="fa fa-bomb"></i>
             </li>
-            <li class="card open show">
+            <li class="card">
                 <i class="fa fa-bolt"></i>
             </li>
             <li class="card">
@@ -79,8 +86,29 @@
                 <i class="fa fa-cube"></i>
             </li>
         </ul>
-    </div>
 
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h1>Congratulations!</h1>
+    <p>You won the game! It took you this much time: </p>
+<h1 id="timerplace2"></h1>
+    <p>and your star rating was: </p>
+                <div class="score-panel">
+            <ul id="finalstars" class="stars"> </ul>
+        </div>
+<p>It took you this many moves: </p>
+<h1 id="nummoves"></h1>
+
+  </div>
+</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/app.js"></script>
+
 </body>
 </html>
