@@ -56,7 +56,7 @@ function shuffle(array) {
     }
     return array;
 }
-// RESET THE GAME
+// RESET THE GAME IF SOMEONE CLICKS REFRESH BUTTON ON MAIN SCREEN
 const refreshButton = document.querySelector('.fa-repeat');
 refreshButton.addEventListener('click', function() {
     deckUl.innerHTML = cardArray.join('');
@@ -75,6 +75,35 @@ refreshButton.addEventListener('click', function() {
     one.style.visibility = 'visible';
     two.style.visibility = 'visible';
     three.style.visibility = 'visible';
+    moves = 0;
+nummoves.textContent = '';
+nummoves2.textContent = 'Number of moves: ';
+});
+
+// RESET THE GAME IF SOMEONE CLICKS REFRESH BUTTON IN MODAL
+
+const refreshButton2 = document.querySelector('.restart2');
+refreshButton2.addEventListener('click',function(){
+    modal.style.display = "none";
+    deckUl.innerHTML = cardArray.join('');
+    shuffledarray = shuffle(cardArray);
+    //RESET TIMER
+    clearTimeout(t);
+    h1.textContent = "00:00:00";
+    h2.textContent = "00:00:00";
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    // RESTART TIME
+    timer();
+    //RESET RATINGS
+    starshtml = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+    one.style.visibility = 'visible';
+    two.style.visibility = 'visible';
+    three.style.visibility = 'visible';
+    moves = 0;
+nummoves.textContent = '';
+nummoves2.textContent = 'Number of moves: ';
 });
 /* *******************************
  * Game Play Functions
@@ -90,6 +119,7 @@ refreshButton.addEventListener('click', function() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 function respondToTheClick(evt) {
+     console.log(evt.target.className);
     //console.log('inside click');
     //console.log(openCardList);
     if (openCardList.length === 0) {
@@ -104,19 +134,29 @@ function respondToTheClick(evt) {
         }
         rating();
         stars();
-        console.log('stars' + starshtml);
-        console.log('moves' + moves);
+
     } else if (openCardList.length === 1) {
-        moves++;
-        nummoves.textContent = moves;
-        nummoves2.textContent = 'Number of moves: ' + moves;
         //console.log('matching card list: ');
         //console.log(matchedCards);
         if (evt.target.nodeName === 'LI') {
+            //If it's an open card don't increment moves
+            
+            if(evt.target.className.includes('open')){
+
+        nummoves.textContent = moves;
+        nummoves2.textContent = 'Number of moves: ' + moves;
+
+    } else{
+openCardList.push(evt.target);
+                    moves++;
+        nummoves.textContent = moves;
+        nummoves2.textContent = 'Number of moves: ' + moves;
+}
             evt.target.classList.add('open');
             evt.target.classList.add('show');
             //console.log('inside if 1' + evt.target);
-            openCardList.push(evt.target);
+            
+
             //console.log('open card list:');
             //console.log(openCardList);
             //console.log(openCardList[0].innerHTML)
@@ -204,6 +244,9 @@ span.onclick = function() {
     seconds = 0;
     minutes = 0;
     hours = 0;
+    moves = 0;
+    nummoves.textContent = '';
+nummoves2.textContent = 'Number of moves: ';
     // RESTART TIME
     timer();
     //RESET RATINGS
@@ -224,6 +267,9 @@ window.onclick = function(event) {
         seconds = 0;
         minutes = 0;
         hours = 0;
+        moves = 0;
+        nummoves.textContent = '';
+nummoves2.textContent = 'Number of moves: ';
         // RESTART TIME
         timer();
         //RESET RATINGS
